@@ -1,0 +1,22 @@
+{
+  "name": "metal",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.4",
+    "express": "^4.16.4",
+    "redis": "^2.8.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  },
+  "devDependencies": {
+    "fakeredis": "^2.0.0",
+    "jest": "^24.8.0"
+  }
+}
