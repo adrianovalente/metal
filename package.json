@@ -1,22 +1,26 @@
 {
   "name": "metal",
   "version": "0.0.1",
-  "description": "",
+  "description": "Service that runs on Raspberry Pi to control the status of the lights in my room",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "encrypt-variables": "node scripts/keys-encryption.js encrypt",
+    "decrypt-variables": "node scripts/keys-encryption.js decrypt"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Adriano Valente <me@dri.cool>",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.4",
     "express": "^4.16.4",
     "redis": "^2.8.0",
     "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "fakeredis": "^2.0.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "simple-encryptor": "^3.0.0"
   }
 }

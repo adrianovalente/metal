@@ -1,0 +1,19 @@
+const redis = require('redis')
+const LIGHTS_UPDATE = 'LIGHTS-UPDATE'
+
+module.exports.UpdatesSubscriber = class UpdatesSubscriber {
+  constructor ({ config, onUpdate }) {
+    redis
+      .createClient({
+        host: config.REDIS_HOST,
+        port: config.REDIS_PORT,
+        password: config.REDIS_PASSWORD
+      })
+      .on('message', channel => {
+        if (channel === LIGHTS_UPDATE) {
+          onUpdate()
+        }
+      })
+      .subscribe(LIGHTS_UPDATE)
+  }
+}

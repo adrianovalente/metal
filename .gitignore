@@ -172,3 +172,5 @@ Temporary Items
 .serverless
 
 # End of https://www.gitignore.io/api/osx,node,emacs,serverless
+
+secrets.yml
