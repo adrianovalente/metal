@@ -1,8 +1,10 @@
 language: node_js
 node_js: 8.10.0
-
 install:
 - npm install
-
+- npm run decrypt-variables -- $SECRETS_ENCRYPTION_KEY
 script:
 - npm t
+env:
+  global:
+    secure: KDBBiOBdi2VSQTaldReSmYDK4AOeD7T6RcKAukeK0qmbXFxD/L6bNj5jwSW+tTASRGDL0sAIXRmdiC9HGGq8CKH4fJqulT97eVy+cjko8dBNQseiCcvRHXeJh/ZNU3Xd1JU1Lh5ACYcYGnVryn/E08Mb+j+KNcVNZEbA9SYYzcpO7w76ZMOY1m817smnTWxG6Xx23BsEe7cQm4SdFC2HNzsFt71g5Qx8X/pOlDqteXbrc5d5HEb1FdiDcg8wtIZPVV1oKLsX2CNN5EX+s7Xp+Cu3Vx9t11yAVLhuSOu3iK0WIFm4btVCI2aM1eMldFydH1kcSbA0uXG++62025nx+9M5PBFZeQWsJA/9sXkO6PlJJFFCbl1EAw1R5o4COHXZ3AItpOpC89AM7WDlkamyEpPFYd9xnroKyfei/7sQP1h/3w1JHsSO8b9jDZ18IYpoGX5DwpUpfCfedxbVF9i5Oq5n0VxXmCQvJ+18gNy+Hca7HoUnKA5DHcBCFjqiNLwmtE8a/T3qYXlF46aFt4ekTc9dMxvAFqGMs5eN5c0IWQ2CJWxD4uzJeAu9EOPqgzfEvWSvN2bFKQkqt0sDsblEM4kIr5Jjy1Ihndd5dy8o80gAMm9xvmmnlHveKKswYrgvwoJ73qasCiVy83tGbIbAetXqehAxLdeP5Dh0WwjCuDE=
