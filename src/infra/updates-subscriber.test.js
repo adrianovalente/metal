@@ -9,7 +9,7 @@ const { UpdatesSubscriber } = require('./updates-subscriber')
 test('on-update subscription', async () => {
   const onUpdate = jest.fn()
 
-  new UpdatesSubscriber({ onUpdate })
+  new UpdatesSubscriber({ config: {}, onUpdate })
 
   await Promise.delay(50)
   await Promise.promisifyAll(fakeredis.createClient(6379)).publishAsync('LIGHTS-UPDATE', 'Hello')
