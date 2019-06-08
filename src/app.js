@@ -14,9 +14,15 @@ let updatesSubscriber, localPersister, remotePersister
 
   updatesSubscriber = new UpdatesSubscriber({
     config,
-    onUpdate: () => {
+    onUpdate: async () => {
       console.log(new Date() + ' - Just got an update! 💡')
+
+      const state = (await remotePersister.getState()).status
+      console.log(state)
+      localPersister.persistStatus(state)
+      setLightState(lightState(state))
     }
+
   })
 
   localPersister = new LocalPersister({
@@ -26,4 +32,60 @@ let updatesSubscriber, localPersister, remotePersister
   remotePersister = new RemotePersister({
     API_URL: config.API_URL
   })
+
+  await init()
+
+  onButtonPress(async () => {
+    const state = lightState(localPersister.getStatus())
+
+
+    // only to provide a real-time experience
+    setLightState(!state)
+
+    const description = 'Changed via push button'
+    const reason = 'PUSH_BUTTON'
+
+    const newState = {
+      description,
+      reason,
+      pins: [{
+        gpio: 2,
+        out: !state
+      }]
+    }
+
+    localPersister.persistStatus(newState)
+    await remotePersister.setState({
+      status: {
+        description,
+        reason,
+        out: !state
+      }
+    })
+  
+  })
+
 })()
+
+
+async function init () {
+  const state = localPersister.getStatus()
+  console.log(state)
+
+  setLightState(lightState(state))
+  localPersister.persistStatus(state)
+  await remotePersister.setState({
+    status: {
+      description: state.description,
+      out: lightState(state),
+      reason: 'ON_RASPBERRY_INIT'
+    }
+  })
+
+}
+
+
+
+function lightState (state) {
+  return state.pins[0].out
+}
