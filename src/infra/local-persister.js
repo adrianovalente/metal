@@ -1,12 +1,12 @@
 const fs = require('fs')
 
 const DEFAULT_CONFIG = {
-  description : 'Default config from logal persister',
-  pins : [{
-    gpio : 2,
-    out : false
+  description: 'Default config from logal persister',
+  pins: [{
+    gpio: 2,
+    out: false
   }],
-  reason : 'DEFAULT_CONFIG'
+  reason: 'DEFAULT_CONFIG'
 }
 
 module.exports.LocalPersister = class LocalPersister {

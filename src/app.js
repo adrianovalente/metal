@@ -14,6 +14,4 @@ let updatesSubscriber
       console.log(new Date() + ' - Just got an update! 💡')
     }
   })
-
 })()
-
