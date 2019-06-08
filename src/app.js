@@ -11,7 +11,7 @@ let updatesSubscriber
   updatesSubscriber = new UpdatesSubscriber({
     config,
     onUpdate: () => {
-      console.log('Just got an update! 💡')
+      console.log(new Date() + ' - Just got an update! 💡')
     }
   })
 

@@ -1,5 +1,5 @@
 const redis = require('redis')
-const LIGHTS_UPDATE = 'LIGHTS-UPDATE'
+const LIGHTS_UPDATE = 'LIGHTS_UPDATE'
 
 module.exports.UpdatesSubscriber = class UpdatesSubscriber {
   constructor ({ config, onUpdate }) {

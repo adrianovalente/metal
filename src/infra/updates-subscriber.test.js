@@ -12,7 +12,7 @@ test('on-update subscription', async () => {
   new UpdatesSubscriber({ config: {}, onUpdate })
 
   await Promise.delay(50)
-  await Promise.promisifyAll(fakeredis.createClient(6379)).publishAsync('LIGHTS-UPDATE', 'Hello')
+  await Promise.promisifyAll(fakeredis.createClient(6379)).publishAsync('LIGHTS_UPDATE', 'Hello')
   await Promise.delay(50)
 
   expect(onUpdate.mock.calls.length).toBe(1)
