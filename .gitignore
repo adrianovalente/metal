@@ -174,3 +174,5 @@ Temporary Items
 # End of https://www.gitignore.io/api/osx,node,emacs,serverless
 
 secrets.yml
+
+src/infra/remote-persister.test.js

@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint src/",
     "test": "jest",
+    "start": "node src/app.js",
     "encrypt-variables": "node scripts/keys-encryption.js encrypt",
     "decrypt-variables": "node scripts/keys-encryption.js decrypt"
   },
