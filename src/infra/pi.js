@@ -37,5 +37,5 @@ module.exports.onButtonPress = function onButtonPress (cb) {
 }
 
 module.exports.setLightState = function setLightState (state) {
-  return output.writeSync(state ? 1 : 0)
+  return output.writeSync(!state ? 1 : 0)
 }
