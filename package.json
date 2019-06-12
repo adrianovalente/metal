@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/",
+    "start": "node src/app.js",
     "test": "jest",
     "start": "node src/app.js",
     "encrypt-variables": "node scripts/keys-encryption.js encrypt",
