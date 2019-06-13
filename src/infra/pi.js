@@ -42,11 +42,11 @@ module.exports.onButtonPress = function onButtonPress (cb) {
 }
 
 module.exports.setLightState = function setLightState (state) {
-  const timeout = (__dontCallMeUntil && moment().subtract(__dontCallMeUntil) > 0)
+  const timeout = (__dontCallMeUntil && (moment().diff(__dontCallMeUntil, 'ms') < 0))
         ? DONT_CALL_ME_UNTIL
         : 1
 
-  console.log({ __dontCallMeUntil, __scheduledChange, timeout })
+  console.log({ __dontCallMeUntil, timeout })
 
   if (__scheduledChange) {
     clearTimeout(__scheduledChange)
@@ -56,7 +56,8 @@ module.exports.setLightState = function setLightState (state) {
     output.writeSync(!state ? 1 : 0)
     clearTimeout(__scheduledChange)
   }, timeout)
-  __dontCallMeUntil = moment().add(DONT_CALL_ME_UNTIL, 'miliseconds')
+
+  __dontCallMeUntil = moment().add(DONT_CALL_ME_UNTIL, 'ms')
 }
 
 module.exports.getMockSetLightState = () => mockSetLightState
