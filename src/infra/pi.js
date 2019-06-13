@@ -52,7 +52,10 @@ module.exports.setLightState = function setLightState (state) {
     clearTimeout(__scheduledChange)
   }
 
-  __scheduledChange = setTimeout(() => output.writeSync(!state ? 1 : 0), timeout)
+  __scheduledChange = setTimeout(() => {
+    output.writeSync(!state ? 1 : 0)
+    clearTimeout(__scheduledChange)
+  }, timeout)
   __dontCallMeUntil = moment().add(DONT_CALL_ME_UNTIL, 'miliseconds')
 }
 
