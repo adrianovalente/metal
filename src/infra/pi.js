@@ -1,5 +1,14 @@
 const isPi = require('detect-rpi')
-let Gpio
+const moment = require('moment')
+
+if (typeof jest === 'undefined') {
+  // OMG I am so ashamed for that
+  jest = require('jest')
+}
+
+const mockSetLightState = jest.fn()
+const DONT_CALL_ME_UNTIL = 500 // miliseconds
+let __dontCallMeUntil, __scheduledChange, Gpio
 
 if (isPi()) {
   Gpio = require('onoff').Gpio
@@ -17,6 +26,7 @@ if (isPi()) {
 
     writeSync(value) {
       console.log(`Writing ${value} on pin ${this.pin}`)
+      return mockSetLightState(value)
     }
   }
 }
@@ -37,5 +47,18 @@ module.exports.onButtonPress = function onButtonPress (cb) {
 }
 
 module.exports.setLightState = function setLightState (state) {
-  return output.writeSync(!state ? 1 : 0)
+  const timeout = (__dontCallMeUntil && moment().subtract(__dontCallMeUntil) > 0)
+        ? DONT_CALL_ME_UNTIL
+        : 1
+
+  console.log({ __dontCallMeUntil, __scheduledChange, timeout })
+
+  if (__scheduledChange) {
+    clearTimeout(__scheduledChange)
+  }
+
+  __scheduledChange = setTimeout(() => output.writeSync(!state ? 1 : 0), timeout)
+  __dontCallMeUntil = moment().add(DONT_CALL_ME_UNTIL, 'miliseconds')
 }
+
+module.exports.getMockSetLightState = () => mockSetLightState
