@@ -1,19 +1,14 @@
 const isPi = require('detect-rpi')
 const moment = require('moment')
 
-if (typeof jest === 'undefined') {
-  // OMG I am so ashamed for that
-  jest = require('jest')
-}
-
-const mockSetLightState = jest.fn()
 const DONT_CALL_ME_UNTIL = 500 // miliseconds
-let __dontCallMeUntil, __scheduledChange, Gpio
+let __dontCallMeUntil, __scheduledChange, Gpio, mockSetLightState
 
 if (isPi() && !process.env.JEST_WORKER_ID) {
   Gpio = require('onoff').Gpio
   console.log('Running on pi environment')
 } else {
+  mockSetLightState = jest.fn()
   Gpio = class GpioMock {
     constructor (pin) {
       this.pin = pin
