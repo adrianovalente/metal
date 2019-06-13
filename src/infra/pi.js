@@ -10,7 +10,7 @@ const mockSetLightState = jest.fn()
 const DONT_CALL_ME_UNTIL = 500 // miliseconds
 let __dontCallMeUntil, __scheduledChange, Gpio
 
-if (isPi()) {
+if (isPi() && !process.env.JEST_WORKER_ID) {
   Gpio = require('onoff').Gpio
   console.log('Running on pi environment')
 } else {
