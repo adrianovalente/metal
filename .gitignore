@@ -176,3 +176,4 @@ Temporary Items
 secrets.yml
 
 src/infra/remote-persister.test.js
+package-lock.json
