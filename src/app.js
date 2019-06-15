@@ -70,7 +70,6 @@ let updatesSubscriber, localPersister, remotePersister
 
 async function init () {
   const state = localPersister.getStatus()
-  console.log(state)
 
   setLightState(lightState(state))
   localPersister.persistStatus(state)
