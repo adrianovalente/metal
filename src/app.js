@@ -26,7 +26,7 @@ let updatesSubscriber, localPersister, remotePersister
   })
 
   localPersister = new LocalPersister({
-    LOCAL_PERSISTER_PATH: '/home/METAL_PERSISTANCE'
+    LOCAL_PERSISTER_PATH: '/home/pi/METAL_PERSISTANCE'
   })
 
   remotePersister = new RemotePersister({
