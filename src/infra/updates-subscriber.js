@@ -9,6 +9,11 @@ module.exports.UpdatesSubscriber = class UpdatesSubscriber {
         port: config.REDIS_PORT,
         password: config.REDIS_PASSWORD
       })
+      .on('error', e => {
+        console.error(e)
+      })
+      .on('reconnecting', () => console.log('Reconnecting...'))
+      .on('connect', () => console.log('Connected!'))
       .on('message', channel => {
         if (channel === LIGHTS_UPDATE) {
           onUpdate()
