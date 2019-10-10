@@ -4,6 +4,7 @@
   "description": "Service that runs on Raspberry Pi to control the status of the lights in my room",
   "main": "index.js",
   "scripts": {
+    "postinstall": "/bin/bash scripts/post-install.sh",
     "lint": "eslint src/",
     "start": "node src/app.js",
     "test": "jest",
