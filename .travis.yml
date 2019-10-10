@@ -11,7 +11,7 @@ deploy:
   provider: script
   script: /bin/bash scripts/deploy.sh
   on:
-    branch: deploymeny-setup
+    branch: master
 script:
 - npm t
 env:
