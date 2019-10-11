@@ -1,19 +1,19 @@
 language: node_js
 node_js: 8.10.0
+
 install:
 - npm install
 - npm run decrypt-variables -- $SECRETS_ENCRYPTION_KEY
-addons:
-  apt:
-    packages:
-    - sshpass
+
 deploy:
   provider: script
   script: "/bin/bash scripts/deploy.sh"
   on:
     branch: master
+
 script:
 - npm t
+
 env:
   global:
   - secure: Vrj6ybU2yYQcJaoexCXUWApEN7duWtH96jt6jg9A13SE5iz2YaAhYoi7XuYuuIQ4zPAVrBjeaV58xK0Iq7PaMf4bpGEZhN0bOLusf+3ongaNQj5WcRcf4V3MPF0hWoeXuJ9pirMMtT/XHR0/iqUAqdw1WVR+boyhAfTlm7nKiRi13vlykuYB8+axhaTrVgdKrEhyHvT+jI/AFg8JeFTZzhluRS/YEhUrF9H5m1Dbad40WgJChJLUI4Plpx8FpuB0CI+DBYQgIxwmbUElmvluTd7jELDeVo/FfqPsOQDlW3zA7vji90V0j+SCSPPUugd32GqYGGFuZVYU6x8qg5q5LH7+FjB1rpn+IP6G0wxrv/BNScDT3cWwe7elxKmSzPuHlXPhVHk+HsLGcR1Tqzz8grX1wYA5s0aA9S5/sQbUXKOhbOYBpW6H2sP1ei168QsVqhRWCDMbaMWTAZncmaY737KCD3C9qVTID+nIy/wrZcxUBCy0esobln4fZsusgJ9xIlR8cDFel7kwx9C3lDxIlCfRvJci2xS2KkMQDDVEvQwIWKPVCJ/+KVzdgURBE2icdOci3zJvUScVdHmhA/xI5Q4F7eWLHFaNl8OkJWwCU7bmH8nVHu+AJwyA4oJ2R1xFlllI43SOr5t0Q3aappRwAp+I5aLV8F20qCvg6N4FUI0=
