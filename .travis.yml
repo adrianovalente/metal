@@ -11,6 +11,10 @@ deploy:
   on:
     branch: master
 
+branches:
+  only:
+  - master
+
 script:
 - npm t
 
