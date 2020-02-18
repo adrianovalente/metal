@@ -3,12 +3,14 @@ const LIGHTS_UPDATE = 'LIGHTS_UPDATE'
 
 module.exports.UpdatesSubscriber = class UpdatesSubscriber {
   constructor ({ config, onUpdate }) {
-    redis
+    this.client = redis
       .createClient({
         host: config.REDIS_HOST,
         port: config.REDIS_PORT,
         password: config.REDIS_PASSWORD
       })
+
+    this.client
       .on('error', e => {
         console.error(e)
       })
@@ -20,5 +22,25 @@ module.exports.UpdatesSubscriber = class UpdatesSubscriber {
         }
       })
       .subscribe(LIGHTS_UPDATE)
+
+  }
+
+  healthCheck () {
+    const self = this
+    if (!self.client) {
+      console.log(1)
+      return Promise.resolve({ healthy: false })
+    }
+
+    return new Promise((res) => {
+      self.client.ping((error, data) => {
+        console.log(error)
+        if (error) {
+          return res({ healthy: false, error})
+        }
+
+        res({ healthy: true })
+      })
+    })
   }
 }
