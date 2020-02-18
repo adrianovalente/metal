@@ -37,7 +37,7 @@ let updatesSubscriber, localPersister, remotePersister
 
   http.createServer(async (req, res) => {
     const healthCheck = await updatesSubscriber.healthCheck()
-    res.writeHead(200, {'Content-Type': 'text/plain'})
+    res.writeHead(200, {'Content-Type': 'application/json'})
     res.write(JSON.stringify(healthCheck))
     res.end()
   }).listen(8080)
