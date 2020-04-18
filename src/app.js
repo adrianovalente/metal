@@ -38,7 +38,6 @@ let updatesSubscriber, localPersister, remotePersister
   onButtonPress(async () => {
     const state = lightState(localPersister.getStatus())
 
-
     // only to provide a real-time experience
     setLightState(!state)
 
