@@ -1,3 +1,4 @@
+const http = require('http')
 const { onButtonPress, setLightState }  = require('./infra/pi')
 
 const { initConfig, getConfig } = require('./infra/config')
@@ -32,6 +33,15 @@ let updatesSubscriber, localPersister, remotePersister
   remotePersister = new RemotePersister({
     API_URL: config.API_URL
   })
+
+
+  http.createServer(async (req, res) => {
+    const healthCheck = await updatesSubscriber.healthCheck()
+    res.writeHead(200, {'Content-Type': 'application/json'})
+    res.write(JSON.stringify(healthCheck))
+    res.end()
+  }).listen(8080)
+
 
   await init()
 
